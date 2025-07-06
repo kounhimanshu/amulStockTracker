@@ -123,3 +123,7 @@ You can find product aliases by visiting the product page on [shop.amul.com](htt
 ## 🧑‍💻 Author
 
 Built with ❤️ using Python + Playwright
+
+
+```docker buildx build --network=host -t amul-stock-checker . ```
+```docker run --rm --network=host --env-file .env amul-stock-checker ```
