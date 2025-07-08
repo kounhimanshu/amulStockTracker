@@ -11,13 +11,17 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-load_dotenv()  # Load .env variables
+load_dotenv(override=True)  # Load .env variables
 
 def send_email(subject, body):
     smtp_user = os.getenv("SMTP_USER")
+    logging.info("This is SMTP user: %s",smtp_user)
     smtp_pass = os.getenv("SMTP_PASS")
+    # logging.info("This is smtp_pass: %s",smtp_pass)
     email_from = os.getenv("EMAIL_FROM")
+    logging.info("This is SMTP email_from: %s",email_from)
     email_to = os.getenv("EMAIL_TO")
+    logging.info("This is SMTP email_to: %s",email_to)
 
     if not all([smtp_user, smtp_pass, email_from, email_to]):
         logging.error("Environment variables not loaded properly.")
@@ -40,6 +44,6 @@ def send_email(subject, body):
 # For testing
 if __name__ == "__main__":
     send_email(
-        subject="Amul Stock Checker Test Mail",
-        body="This is a test email from notifier.py via Gmail SMTP."
+        subject="Revenge humiliation",
+        body="Halke me le rhe the kya"
     )
