@@ -7,7 +7,7 @@ def job():
     main()
 
 # Schedule to run every hour
-schedule.every().minute.do(job)
+schedule.every().hours.do(job)
 
 print("🔁 Scheduler started. Waiting for next run...", flush=True)
 
