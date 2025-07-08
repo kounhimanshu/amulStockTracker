@@ -4,6 +4,8 @@ import logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
+from email.utils import formataddr
+
 
 # Configure logging
 logging.basicConfig(
@@ -20,6 +22,8 @@ def send_email(subject, body):
     # logging.info("This is smtp_pass: %s",smtp_pass)
     email_from = os.getenv("EMAIL_FROM")
     logging.info("This is SMTP email_from: %s",email_from)
+    email_from_name = os.getenv("EMAIL_FROM_NAME")
+    logging.info("This is SMTP email_from_name: %s",email_from_name)
     email_to = os.getenv("EMAIL_TO")
     logging.info("This is SMTP email_to: %s",email_to)
 
@@ -28,7 +32,7 @@ def send_email(subject, body):
         return
 
     message = MIMEMultipart()
-    message["From"] = email_from
+    message["From"] = formataddr((email_from_name, email_from))
     message["To"] = email_to
     message["Subject"] = subject
     message.attach(MIMEText(body, "plain"))
@@ -44,6 +48,6 @@ def send_email(subject, body):
 # For testing
 if __name__ == "__main__":
     send_email(
-        subject="Revenge humiliation",
-        body="Halke me le rhe the kya"
+        subject="Test",
+        body="We are testing email service. Sorry for inconvenience"
     )

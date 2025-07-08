@@ -62,13 +62,13 @@ python main-ui.py
 ### 1. Build the Docker Image
 
 ```bash
-docker build -t amul-stock-tracker .
+docker buildx build --network=host -t amul-stock-tracker . 
 ```
 
 ### 2. Run the Container
 
 ```bash
-docker run --rm -v "$(pwd)":/app amul-stock-tracker:latest 
+docker run --rm --network=host --env-file .env amul-stock-tracker
 ```
 
 > This runs the checker fully headless without a browser window. Useful for servers and CI environments.
@@ -80,9 +80,12 @@ docker run --rm -v "$(pwd)":/app amul-stock-tracker:latest
 ```
 amul-stock-checker/
 ├── main.py            # Headless version for Docker
-├── main-ui.py         # UI version for local debug/testing
+├── main-ui.py         # UI version for local debug/testing only
+├── notifier.py        # Sends email using Gmail SMTP + .env credentials
+├── schedular.py       # Runs main.py on schedule (e.g. every hour)
 ├── requirements.txt   # Python dependencies
 ├── Dockerfile         # Docker build instructions
+├── .env               # SMTP credentials (incorrect values committed for security)
 └── README.md          # You're reading this
 ```
 
@@ -124,6 +127,3 @@ You can find product aliases by visiting the product page on [shop.amul.com](htt
 
 Built with ❤️ using Python + Playwright
 
-
-```docker buildx build --network=host -t amul-stock-checker . ```
-```docker run --rm --network=host --env-file .env amul-stock-checker ```
