@@ -24,51 +24,33 @@ This project is a headless browser automation script using **Playwright** to mon
 
 ---
 
-## 🚀 How to Run Locally (With UI) ```ubuntu```
 
-### 1. Clone the Repository
 
-```bash
-git clone https://github.com/yourusername/amul-stock-checker.git
-cd amul-stock-checker
-```
+## 🐳 How to Run ```Docker (Headless)```
 
-### 2. Set Up Virtual Environment
+### create a .env file in the project root directory.
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+SMTP_USER=fromemail@gmail.com
+SMTP_PASS=abcd....
+EMAIL_FROM=fromemail@gmail.com
+EMAIL_TO=toemail@gmail.com
+EMAIL_FROM_NAME=Amul Stock Tracker
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
 ```
 
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-playwright install
-```
-
-### 4. Run the Script with UI
-
-```bash
-python main-ui.py
-```
-
-> The browser will open, enter the pincode, and navigate to the product page. Logs will be printed to console.
-
----
-
-## 🐳 How to Run on Docker (Headless)
 
 ### 1. Build the Docker Image
 
 ```bash
-docker build -t amul-stock-tracker .
+docker buildx build --network=host -t amul-stock-tracker . 
 ```
 
 ### 2. Run the Container
 
 ```bash
-docker run --rm -v "$(pwd)":/app amul-stock-tracker:latest 
+docker run --rm --network=host --env-file .env amul-stock-tracker
 ```
 
 > This runs the checker fully headless without a browser window. Useful for servers and CI environments.
@@ -80,9 +62,12 @@ docker run --rm -v "$(pwd)":/app amul-stock-tracker:latest
 ```
 amul-stock-checker/
 ├── main.py            # Headless version for Docker
-├── main-ui.py         # UI version for local debug/testing
+├── main-ui.py         # UI version for local debug/testing only
+├── notifier.py        # Sends email using Gmail SMTP + .env credentials
+├── schedular.py       # Runs main.py on schedule (e.g. every hour)
 ├── requirements.txt   # Python dependencies
 ├── Dockerfile         # Docker build instructions
+├── .env               # SMTP credentials (incorrect values committed for security)
 └── README.md          # You're reading this
 ```
 
@@ -123,3 +108,4 @@ You can find product aliases by visiting the product page on [shop.amul.com](htt
 ## 🧑‍💻 Author
 
 Built with ❤️ using Python + Playwright
+

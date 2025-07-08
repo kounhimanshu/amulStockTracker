@@ -2,9 +2,10 @@ from playwright.sync_api import sync_playwright
 import logging
 import sys
 import json
+from notifier import send_email
 
 # Constants
-PRODUCT_ALIAS = "amul-organic-trial-pack-7-kg-or-4-products"
+PRODUCT_ALIAS = "amul-high-protein-plain-lassi-200-ml-or-pack-of-30"
 PRODUCT_PAGE_URL = f"https://shop.amul.com/en/product/{PRODUCT_ALIAS}"
 API_URL_FRAGMENT = "/api/1/entity/ms.products"
 PINCODE = "122003"
@@ -82,9 +83,27 @@ def main():
                     logging.info(f"📩 Message: {response_json.get('messages')}")
 
                     product = response_json.get("data", [{}])[0]
-                    logging.info(f"🧾 Product: {product.get('name')}")
-                    logging.info(f"📦 Available: {product.get('available')}")
-                    logging.info(f"🔢 Quantity: {product.get('inventory_quantity')}")
+                     
+                    name = product.get("name")
+                    available = product.get("available")
+                    quantity = product.get("inventory_quantity")
+
+                    logging.info(f"🧾 Product: {name}")
+                    logging.info(f"📦 Available: {available}")
+                    logging.info(f"🔢 Quantity: {quantity}")
+                    
+                    if available:
+                        logging.info("📧 Sending availability email notification...")
+                        subject = f"📦 {name} is In Stock!"
+                        body = (
+                            f"Product: {name}\n"
+                            f"Available: {available}\n"
+                            f"Quantity: {quantity}\n"
+                            f"Buy Now: https://shop.amul.com/en/product/{PRODUCT_ALIAS}"
+                        )
+                        send_email(subject, body)
+
+
                 else:
                     logging.error(f"❌ API failed with status code {response.status}")
             else:
