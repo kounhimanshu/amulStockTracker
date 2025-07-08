@@ -5,7 +5,7 @@ import json
 from notifier import send_email
 
 # Constants
-PRODUCT_ALIAS = "amul-organic-trial-pack-7-kg-or-4-products"
+PRODUCT_ALIAS = "amul-high-protein-plain-lassi-200-ml-or-pack-of-30"
 PRODUCT_PAGE_URL = f"https://shop.amul.com/en/product/{PRODUCT_ALIAS}"
 API_URL_FRAGMENT = "/api/1/entity/ms.products"
 PINCODE = "122003"
