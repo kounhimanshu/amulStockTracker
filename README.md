@@ -86,26 +86,26 @@ You can find product aliases by visiting the product page on [shop.amul.com](htt
 
 ---
 
-## ✅ Example Output
+## ✅ Example Output mail
 
 ```bash
-🧾 Product: Amul Organic Trial Pack (7 Kg)
-📦 Available: 1
-🔢 Quantity: 14
-🚨 IN STOCK! Buy Now: https://shop.amul.com/en/product/amul-organic-trial-pack-7-kg-or-4-products
+Product: Amul Organic Trial Pack, 7 kg | 4 Products
+Available: 1
+Quantity: 12
+Buy Now: https://shop.amul.com/en/product/amul-organic-trial-pack-7-kg-or-4-products
 ```
 
 ---
-
 ## 📌 Notes
 
-- This tool mimics actual user behavior to ensure API requests work as expected.
-- Useful for personal tracking or building stock alert systems.
-- Designed for educational use. Respect site terms and avoid excessive polling.
+- This tool mimics real user behaviour to verify that API requests work as expected.
+- Handy for personal tracking dashboards or building stock-alert systems.
+- Intended for educational use — respect each site’s terms of service and avoid excessive polling.
 
 ---
 
 ## 🧑‍💻 Author
 
-Built with ❤️ using Python + Playwright
+Built with excitement by **Himanshu**
 
+Connect on [LinkedIn](https://www.linkedin.com/in/kounhimanshu/)
