@@ -24,40 +24,22 @@ This project is a headless browser automation script using **Playwright** to mon
 
 ---
 
-## 🚀 How to Run Locally (With UI) ```ubuntu```
 
-### 1. Clone the Repository
 
-```bash
-git clone https://github.com/yourusername/amul-stock-checker.git
-cd amul-stock-checker
-```
+## 🐳 How to Run ```Docker (Headless)```
 
-### 2. Set Up Virtual Environment
+### create a .env file in the project root directory.
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+SMTP_USER=fromemail@gmail.com
+SMTP_PASS=abcd....
+EMAIL_FROM=fromemail@gmail.com
+EMAIL_TO=toemail@gmail.com
+EMAIL_FROM_NAME=Amul Stock Tracker
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
 ```
 
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-playwright install
-```
-
-### 4. Run the Script with UI
-
-```bash
-python main-ui.py
-```
-
-> The browser will open, enter the pincode, and navigate to the product page. Logs will be printed to console.
-
----
-
-## 🐳 How to Run on Docker (Headless)
 
 ### 1. Build the Docker Image
 
